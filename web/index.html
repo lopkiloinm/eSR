@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edge-SR: Super Resolution in Browser</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.0/dist/ort.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>edge-SR: Super Resolution For The Masses</h1>
+            <p>Real-time super-resolution powered by ONNX Runtime Web</p>
+            <div class="notice">
+                <strong>🎨 Color Support:</strong> Choose between color processing (channel-wise) for better UX 
+                or grayscale (original paper method) for authenticity. Color mode processes R, G, B channels separately.
+            </div>
+        </header>
+
+        <div class="controls">
+            <div class="model-selector">
+                <label for="modelSelect">Choose Model:</label>
+                <select id="modelSelect">
+                    <option value="">Select a model...</option>
+                    <optgroup label="eSR-TM (Temperature-based) - RECOMMENDED">
+                        <option value="eSR-TM_s2_K7_C16" selected>eSR-TM s2 K7 C16 (Paper's Best Balance) ⭐</option>
+                        <option value="eSR-TM_s2_K3_C4">eSR-TM s2 K3 C4 (Compact)</option>
+                        <option value="eSR-TM_s2_K5_C8">eSR-TM s2 K5 C8 (Fast)</option>
+                    </optgroup>
+                    <optgroup label="eSR-TR (Transformer-based)">
+                        <option value="eSR-TR_s2_K7_C16">eSR-TR s2 K7 C16 (High Quality)</option>
+                        <option value="eSR-TR_s2_K3_C4">eSR-TR s2 K3 C4 (Fast)</option>
+                        <option value="eSR-TR_s2_K5_C8">eSR-TR s2 K5 C8 (Balanced)</option>
+                        <option value="eSR-TR_s3_K3_C4">eSR-TR s3 K3 C4 (3x upscale)</option>
+                        <option value="eSR-TR_s4_K3_C4">eSR-TR s4 K3 C4 (4x upscale)</option>
+                    </optgroup>
+                    <optgroup label="eSR-MAX (Max-pooling)">
+                        <option value="eSR-MAX_s2_K7_C14">eSR-MAX s2 K7 C14 (Paper's Fastest)</option>
+                        <option value="eSR-MAX_s2_K3_C4">eSR-MAX s2 K3 C4 (Compact)</option>
+                        <option value="eSR-MAX_s2_K5_C8">eSR-MAX s2 K5 C8 (Balanced)</option>
+                    </optgroup>
+                    <optgroup label="eSR-CNN (Traditional CNN)">
+                        <option value="eSR-CNN_s2_C8_D3_S12">eSR-CNN s2 C8 D3 S12 (Paper's CNN Best)</option>
+                    </optgroup>
+                    <optgroup label="Classical">
+                        <option value="Bicubic_s2">Bicubic s2</option>
+                        <option value="Bicubic_s3">Bicubic s3</option>
+                        <option value="Bicubic_s4">Bicubic s4</option>
+                    </optgroup>
+                </select>
+                <button id="loadModelBtn" disabled>Load Model</button>
+            </div>
+
+            <div class="file-input">
+                <label for="imageInput">Upload Image:</label>
+                <input type="file" id="imageInput" accept="image/*" disabled>
+                
+                <div class="processing-mode">
+                    <label for="colorMode">Processing Mode:</label>
+                    <select id="colorMode">
+                        <option value="color" selected>Color (Channel-wise processing)</option>
+                        <option value="grayscale">Grayscale (Original paper method)</option>
+                    </select>
+                </div>
+                
+                <button id="processBtn" disabled>Enhance Image</button>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div id="statusText">Select a model to begin</div>
+            <div id="progressBar" class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <div class="image-comparison">
+                <div class="image-panel">
+                    <h3>Original Image</h3>
+                    <div class="image-wrapper">
+                        <canvas id="originalCanvas"></canvas>
+                        <div class="image-info">
+                            <span id="originalInfo">No image loaded</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="image-panel">
+                    <h3>Enhanced Image</h3>
+                    <div class="image-wrapper">
+                        <canvas id="enhancedCanvas"></canvas>
+                        <div class="image-info">
+                            <span id="enhancedInfo">No image processed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="performance-stats">
+            <div class="stat-item">
+                <label>Processing Time:</label>
+                <span id="processingTime">-</span>
+            </div>
+            <div class="stat-item">
+                <label>Model Size:</label>
+                <span id="modelSize">-</span>
+            </div>
+            <div class="stat-item">
+                <label>Upscale Factor:</label>
+                <span id="upscaleFactor">-</span>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <button id="downloadBtn" disabled>Download Enhanced Image</button>
+        </div>
+
+        <footer>
+            <p>Based on the paper: <em>"edge-SR: Super-Resolution For The Masses"</em> by Pablo Navarrete Michelini, Yunhua Lu, and Xingqun Jiang</p>
+            <p>Powered by ONNX Runtime Web</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
