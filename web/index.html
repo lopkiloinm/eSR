@@ -13,8 +13,8 @@
             <h1>edge-SR: Super Resolution For The Masses</h1>
             <p>Real-time super-resolution powered by ONNX Runtime Web</p>
             <div class="notice">
-                <strong>🎨 Color Support:</strong> Choose between color processing (channel-wise) for better UX 
-                or grayscale (original paper method) for authenticity. Color mode processes R, G, B channels separately.
+                <strong>🎨 Color & 4x Support:</strong> Choose between color processing (channel-wise) for better UX 
+                or grayscale (original paper method) for authenticity. Now includes 4x upscaling models for extreme detail enhancement!
             </div>
         </header>
 
@@ -25,23 +25,20 @@
                     <option value="">Select a model...</option>
                     <optgroup label="eSR-TM (Temperature-based) - RECOMMENDED">
                         <option value="eSR-TM_s2_K7_C16" selected>eSR-TM s2 K7 C16 (Paper's Best Balance) ⭐</option>
-                        <option value="eSR-TM_s2_K3_C4">eSR-TM s2 K3 C4 (Compact)</option>
-                        <option value="eSR-TM_s2_K5_C8">eSR-TM s2 K5 C8 (Fast)</option>
+                        <option value="eSR-TM_s4_K3_C16">eSR-TM s4 K3 C16 (4x Recommended) ⭐</option>
+                        <option value="eSR-TM_s4_K7_C1">eSR-TM s4 K7 C1 (4x Fast)</option>
                     </optgroup>
                     <optgroup label="eSR-TR (Transformer-based)">
-                        <option value="eSR-TR_s2_K7_C16">eSR-TR s2 K7 C16 (High Quality)</option>
-                        <option value="eSR-TR_s2_K3_C4">eSR-TR s2 K3 C4 (Fast)</option>
-                        <option value="eSR-TR_s2_K5_C8">eSR-TR s2 K5 C8 (Balanced)</option>
-                        <option value="eSR-TR_s3_K3_C4">eSR-TR s3 K3 C4 (3x upscale)</option>
-                        <option value="eSR-TR_s4_K3_C4">eSR-TR s4 K3 C4 (4x upscale)</option>
+                        <option value="eSR-TR_s2_K7_C16">eSR-TR s2 K7 C16 (2x High Quality)</option>
+                        <option value="eSR-TR_s4_K5_C1">eSR-TR s4 K5 C1 (4x High Speed)</option>
                     </optgroup>
                     <optgroup label="eSR-MAX (Max-pooling)">
-                        <option value="eSR-MAX_s2_K7_C14">eSR-MAX s2 K7 C14 (Paper's Fastest)</option>
-                        <option value="eSR-MAX_s2_K3_C4">eSR-MAX s2 K3 C4 (Compact)</option>
-                        <option value="eSR-MAX_s2_K5_C8">eSR-MAX s2 K5 C8 (Balanced)</option>
+                        <option value="eSR-MAX_s2_K7_C14">eSR-MAX s2 K7 C14 (2x Paper's Fastest)</option>
+                        <option value="eSR-MAX_s4_K5_C1">eSR-MAX s4 K5 C1 (4x Ultra Small)</option>
                     </optgroup>
                     <optgroup label="eSR-CNN (Traditional CNN)">
-                        <option value="eSR-CNN_s2_C8_D3_S12">eSR-CNN s2 C8 D3 S12 (Paper's CNN Best)</option>
+                        <option value="eSR-CNN_s2_C8_D3_S12">eSR-CNN s2 C8 D3 S12 (2x Paper's CNN Best)</option>
+                        <option value="eSR-CNN_s4_C4_D7_S12">eSR-CNN s4 C4 D7 S12 (4x High Quality)</option>
                     </optgroup>
                     <optgroup label="Classical">
                         <option value="Bicubic_s2">Bicubic s2</option>
